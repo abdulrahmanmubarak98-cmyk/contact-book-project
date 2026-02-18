@@ -1,0 +1,27 @@
+[
+    {
+        "Name": "mubarak",
+        "Phone_Number": "09083484848",
+        "Email": "muby@gmail.com"
+    },
+    {
+        "Name": "farouk",
+        "Phone_Number": "070483885784",
+        "Email": "far@gmail.com"
+    },
+    {
+        "Name": "yahaya",
+        "Phone_Number": "081364878437",
+        "Email": "yah@gmail.com"
+    },
+    {
+        "Name": "henry",
+        "Phone_Number": 9073576474,
+        "Email": "hen@gmail.com"
+    },
+    {
+        "Name": "isah",
+        "Phone_Number": 90347347843,
+        "Email": "isah@gmail.com"
+    }
+]

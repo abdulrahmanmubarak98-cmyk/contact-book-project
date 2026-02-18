@@ -1,51 +1,81 @@
 import json
 import os
+
 while True:
-    print("menu")
     print("1. Add contact")
-    print("2. view all contacts")
+    print("2. view all contact")
     print("3. search contact")
+    print("4. delete contact")
     print("0. exit")
 
-    choice = input("select an option!: ")
+    choice = input("Select an option: ")
+
     if choice == "1":
-        Name = input("Enter name: ").lower()
-        phone = int(input("Enter phone number: "))
-        email = input("Enter email: ").lower()
-## using json read "r" write "w" 
-# load and dump
-        if os.path.exists("contacts.json"):
-            with open("contacts.json", "r") as file:
-                contacts = json.load(file)
+        Name = input("Enter contact name: ").lower()
+        Phone_Number = int(input("Enter contact phone: "))
+        Email = input("Enter contact email: ").lower()
+        if os.path.exists("cont.json"):
+            with open("cont.json", "r") as file:
+                cont = json.load(file)
 
-        contacts[Name] = {"phone": phone, "email": email}
+            cont.append({"Name": Name, "Phone_Number": Phone_Number, "Email": Email})
 
-        with open("contacts.json", "w") as file:
-            json.dump(contacts, file)
+        else:
+            cont = []
+
+        with open("cont.json", "w") as file:
+            json.dump(cont, file, indent = 4)
 
     elif choice == "2":
-        file = open("contacts.json", "r")
-        contacts = json.load(file)
-        for name, info in contacts.items():
-            print(name, info["phone"], info["email"])
-        file.close()
+        with open("cont.json") as file:
+            cont = json.load(file)
+
+            for item in cont:
+                print(item["Name"], item["Phone_Number"], item["Email"])
 
     elif choice == "3":
-        name = input("Enter name: ")
-        if name in contacts:
-            print(contacts [name])
-        else:
-            print("contact not found")
+        with open("cont.json") as file:
+            cont = json.load(file)
 
+        search_name = input("Enter Name: ")
+        found = False
+        for contact in cont:
+            
+            if contact["Name"] == search_name:
+                print(f"Name: {contact['Name']}")
+                print(f"Phone_Number: {contact['Phone_Number']}")
+                print(f"Email: {contact['Email']}")
+                found = True
+                break
+        if not found:
+            print("Contact not found")
+
+    elif choice == "4":
+
+        with open("cont.json", "r") as file:
+                cont = json.load(file)
+
+        found = False
+        delete_name = input("Enter name: ")
+
+        for contact in cont:
+            if contact["Name"] == delete_name:
+                    cont.remove(contact)
+                    print("contact deleted")
+                    found =  True
+        if not found:
+                print("No record found")
+
+        with open("cont.json", "w") as file:
+                json.dump(cont, file, indent = 4)
     elif choice == "0":
-        print("Goodbye, Have a nice day!")
-        break
+         print("Goodbye!")
+         break
 
     else:
-        print("invalid option")
+         print("invalid option")
 
-    
-
-
+        
 
 
+       
